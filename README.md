@@ -10,11 +10,10 @@ Can cipher letters
 ## Get it running!
 You need a D compiler, and then in the code you need to edit some preferences.
 
-`
-char[] input = "This is a ROT. Guvf vf n EBG".dup;
+```char[] input = "This is a ROT. Guvf vf n EBG".dup;
 size_t amountOfRotation = 13;
 
 void main() {
 	ROTate(input, amountOfRotation);
 }
-`
+```
