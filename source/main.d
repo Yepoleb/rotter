@@ -1,13 +1,18 @@
 import std.stdio;
 
-char[] input = "This is a ROT. Guvf vf n EBG".dup;
-immutable static string[2] check = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+// PART YOU EDIT ///////////////////////////////////////
 
+char[] input = "This is a ROT. Guvf vf n EBG".dup;
 size_t amountOfRotation = 13;
+
+////////////////////////////////////////////////////////
+
+immutable static string[2] check = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
 void main() {
 	ROTate(input, amountOfRotation);
 }
+
 
 void ROTate(char[] s, int amountToRotate) {
 	foreach(n; 0 .. s.length){
