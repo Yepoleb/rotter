@@ -23,14 +23,12 @@ void ROTate(char[] s, int amountToRotate) {
 }
 
 char rotateCharUniversal(char charToRotate, int amount) {
-	foreach(a; 0 .. check[0].length){
-		if(charToRotate == check[0][a]){
-			return check[0][(a + amount) % check[0].length];
+	foreach(n; 0 .. check.length)
+		foreach(a; 0 .. check[n].length){
+			if(charToRotate == check[n][a]){
+				return check[n][(a + amount) % check[n].length];
+			}
 		}
-		if(charToRotate == check[1][a]){
-			return check[1][(a + amount) % check[1].length];
-		}
-	}
 
 	return charToRotate;
 }
