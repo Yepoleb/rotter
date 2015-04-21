@@ -1,6 +1,6 @@
 import std.stdio;
 
-size_t alphabetLenght;
+size_t alphabetLenght; //Incase you make your own alphabet
 immutable static string[2] check = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]; // Qucik method for me to have both big and small letters.
 
 static this(){
@@ -16,7 +16,7 @@ static this(){
 // PART YOU EDIT ///////////////////////////////////////
 
 string input = "This is a ROT. Guvf vf n EBG"; // String to rotate.
-size_t amountOfRotation = 39; // How far you want to rotate the above string.
+size_t amountOfRotation = 13; // How far you want to rotate the above string.
 
 ////////////////////////////////////////////////////////
 

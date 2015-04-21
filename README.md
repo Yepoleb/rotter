@@ -11,6 +11,6 @@ Can cipher letters
 You need a D compiler, and then in the code you need to edit some preferences.
 
 ```d
-char[] input = "This is a ROT. Guvf vf n EBG".dup;
-size_t amountOfRotation = 13;
+string input = "This is a ROT. Guvf vf n EBG"; // String to rotate.
+size_t amountOfRotation = 13; // How far you want to rotate the above string.
 ```
