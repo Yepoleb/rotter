@@ -5,7 +5,8 @@ Can cipher letters
 1. You need a D compiler
 2. It's not user-friendly
 3. Follow the next step
-5. What happened to 4?
+4. ???
+5. Profit
 
 ## Get it running!
 You need a D compiler, and then in the code you need to edit some preferences.
