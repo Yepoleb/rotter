@@ -1,12 +1,9 @@
-import std.stdio, std.math;
+import std.stdio;
 
 static immutable size_t alphabetLenght = 26; //Incase you make your own alphabet
 immutable static string[2] alphabet = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]; // Qucik method for me to have both big and small letters.
 
 // PART YOU EDIT ///////////////////////////////////////
-
-string input2 = "This is a test phrase to see if the program axtually works. If vladde forgets to delete this line you will have to do it yer self";
-string input3 = "abcdefghijklmnopqrstuvwxyz";
 
 string input = "This is a ROT. Guvf vf n EBG"; // String to rotate.
 size_t amountOfRotation = 13; // How far you want to rotate the above string.
@@ -49,11 +46,15 @@ string ROTate(string str, int amountToRotate) {
  * Rotates a chacter a specific amount forward
  */
 char rotateCharUniversal(char charToRotate, int amount) {
-	foreach(n; 0 .. alphabet.length) // For every thing in alphabet[]...
+	foreach(n; 0 .. alphabet.length){ // For every thing in alphabet[]...
 		// And for whatever is in that string array, loop through the string inside.
-		foreach(a; 0 .. alphabetLenght) /* This loop should be "alphabet[n].length" instead of 26, but everything in there should be 26 characters anyways */ 
-			if(charToRotate == alphabet[n][a]) // Finds the location of the character entered.
-				return alphabet[n][(a + amount) % alphabet[n].length]; // Then at last return the character at the correct offset (rotated forward).
+		foreach(a; 0 .. alphabetLenght){ /* This loop should be "alphabet[n].length" instead of 26, but everything in there should be 26 characters anyways */ 
+			if(charToRotate == alphabet[n][a]){ // Finds the location of the character entered.
+				int r = (a+amount+alphabet[n].length) % alphabet[n].length; /* Special thanks to Danol and ketmar from #d for helping me figure this command out :) */
+				return alphabet[n][r]; // Then at last return the character at the correct offset (rotated forward).
+			}
+		}
+	}
 	return charToRotate; // If the character isn't found (any character that isn't in the alphabeth, such as a space), return the original character.
 }
 
@@ -98,19 +99,19 @@ void guessROT(string str){
 			largestAmount = storeLetterCounts[a];
 	}
 
-	int[26] blazeit = storeLetterCounts;
-	int yolo = largestAmount, difference;
+	int[26] tempLetterStorage = storeLetterCounts;
+	int tempLargestAmount = largestAmount, difference;
 
 	writeln("\nThe string to be be guessed: ", str, "\n\n");
-	while(yolo >= 0){
-		for(int i = 0; i < blazeit.length; i++){
-			if(blazeit[i] == yolo){
+	while(tempLargestAmount >= 0){
+		for(int i = 0; i < tempLetterStorage.length; i++){
+			if(tempLetterStorage[i] == tempLargestAmount){
 
 				difference = E_LETTER_PLACEMENT - i; //Problems may lie in here :(
 
 				writeln("Rotate amount = ", difference, ":\n", ROTate(str, difference), "\n");  // TODO: Bug, the program gets the negative amount, but rotates in the wrong way, for instance a rotation of 8. Modulus 26 doesn't work on negative numbers?
 				//TODO: Rotation of 24 gives -2 as answer (which is correct, 26-2 is 24)
-				blazeit[i] = -1;
+				tempLetterStorage[i] = -1;
 
 				writeln(" Does this sentence make any sense? If not, press enter to continue.");
 				readln();
@@ -119,7 +120,7 @@ void guessROT(string str){
 			}
 
 		}
-		yolo--;
+		tempLargestAmount--;
 	}
 
 	writeln("\nThe loop for the most common letters has finished. Press enter to print out every other possible combination.");
@@ -130,14 +131,6 @@ void guessROT(string str){
 }
 
 void main() {
-	writeln(ROTate(input3, amountOfRotation));
-
-	//Buggy tests
-	//+
-
-	writeln(ROTate(input3, 0));
-	writeln(ROTate(input3, -22)); //TODO: This give a wrong result. It should return a string with an offset of 4 characters, but return a the same string but the last 4 characters are swapped out to the beginning of the string.
-
-	//guessROT(ROTate(input2, 24)); //Works!
-	//+/
+	writeln(ROTate(input, amountOfRotation)); //Sample text.
+	guessROT(ROTate(input, 12)); //Tries to guess the correct rotation.
 }
