@@ -90,6 +90,8 @@ void guessROT(string str){
 	//Get which letters are used the most.
 	const int E_LETTER_PLACEMENT = 5 - 1; //Minus one is since the alphabet starts counting at 0.
 
+
+//	int largestAmount = reduce!((a, b) => max(a, b))(storeLetterCounts); //Kudos to ketmar on #d. This is apparently the D style, but I don't understand it and I don't want code I don't understand.
 	int largestAmount;
 	foreach(a; 0 .. storeLetterCounts.length){
 		if(largestAmount < storeLetterCounts[a])
@@ -132,9 +134,10 @@ void main() {
 
 	//Buggy tests
 	//+
-	//writeln(ROTate(input3, 1));		//TODO: These give very alike results, but a few letters differ from the other. 'w' is 'a' on the secone line. Prolly modulus 26 not working on negative numbers.
-	//writeln(ROTate(input3, -21));
 
-	guessROT(ROTate(input2, 24)); //The program gives '-1' as an answer, and 'rotation: 1' is rotated the "wrong" way, aka. the opposite
+	writeln(ROTate(input3, 0));
+	writeln(ROTate(input3, -22)); //TODO: This give a wrong result. It should return a string with an offset of 4 characters, but return a the same string but the last 4 characters are swapped out to the beginning of the string.
+
+	//guessROT(ROTate(input2, 24)); //Works!
 	//+/
 }
