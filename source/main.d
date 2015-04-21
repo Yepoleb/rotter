@@ -1,12 +1,12 @@
 import std.stdio;
 
-static immutable size_t alphabetLenght = 26; //Incase you make your own alphabet
+static immutable size_t alphabetLength = 26; //Incase you make your own alphabet
 immutable static string[2] alphabet = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]; // Qucik method for me to have both big and small letters.
 
 // PART YOU EDIT ///////////////////////////////////////
 
 string input = "This is a ROT. Guvf vf n EBG"; // String to rotate.
-size_t amountOfRotation = 13; // How far you want to rotate the above string.
+int amountOfRotation = 13; // How far you want to rotate the above string.
 
 ////////////////////////////////////////////////////////
 
@@ -19,13 +19,13 @@ static this(){
 }
 
 class letterCount{
-	int letterPlacement;
+	size_t letterPlacement;
 	int[26] counts;
 	
 	void addLetter(char ltr){
 		letterPlacement = getLetterPlacementInAlphabet(ltr);
 		
-		if(letterPlacement != alphabetLenght + 1)
+		if(letterPlacement != alphabetLength + 1)
 			counts[letterPlacement]++;
 	}
 	
@@ -48,9 +48,9 @@ string ROTate(string str, int amountToRotate) {
 char rotateCharUniversal(char charToRotate, int amount) {
 	foreach(n; 0 .. alphabet.length){ // For every thing in alphabet[]...
 		// And for whatever is in that string array, loop through the string inside.
-		foreach(a; 0 .. alphabetLenght){ /* This loop should be "alphabet[n].length" instead of 26, but everything in there should be 26 characters anyways */ 
+		foreach(a; 0 .. alphabetLength){ /* This loop should be "alphabet[n].length" instead of 26, but everything in there should be 26 characters anyways */ 
 			if(charToRotate == alphabet[n][a]){ // Finds the location of the character entered.
-				int r = (a+amount+alphabet[n].length) % alphabet[n].length; /* Special thanks to Danol and ketmar from #d for helping me figure this command out :) */
+				size_t r = (a+amount+alphabet[n].length) % alphabet[n].length; /* Special thanks to Danol and ketmar from #d for helping me figure this command out :) */
 				return alphabet[n][r]; // Then at last return the character at the correct offset (rotated forward).
 			}
 		}
@@ -63,12 +63,12 @@ char rotateCharUniversal(char charToRotate, int amount) {
 /**
  * Returns a letters placement in the alphabet minus 1.
  */
-int getLetterPlacementInAlphabet(char letter){
+size_t getLetterPlacementInAlphabet(char letter){
 	foreach(n; 0 .. alphabet.length)
-		foreach(a; 0 .. alphabetLenght)
+		foreach(a; 0 .. alphabetLength)
 			if(letter == alphabet[n][a])
 				return a;
-	return alphabetLenght + 1; //I don't reall know what to do if you enter an "invalid" letter, such as an space.
+	return alphabetLength + 1; //I don't reall know what to do if you enter an "invalid" letter, such as an space.
 }
 
 /**
@@ -126,7 +126,7 @@ void guessROT(string str){
 	writeln("\nThe loop for the most common letters has finished. Press enter to print out every other possible combination.");
 	readln();
 
-	foreach(amount; 0 .. alphabetLenght)
+	foreach(int amount; 0 .. alphabetLength)
 		writeln(amount, ": ", ROTate(str, amount));
 }
 
